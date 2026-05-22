@@ -1,0 +1,33 @@
+match_num,round,slot_a,slot_b,stadium
+73,R32,2A,2B,Los Angeles (Inglewood)
+74,R32,1E,3A/B/C/D/F,Boston (Foxborough)
+75,R32,1F,2C,Monterrey (Guadalupe)
+76,R32,1C,2F,Houston
+77,R32,1I,3C/D/F/G/H,New York/New Jersey (East Rutherford)
+78,R32,2E,2I,Dallas (Arlington)
+79,R32,1A,3C/E/F/H/I,Mexico City
+80,R32,1L,3E/H/I/J/K,Atlanta
+81,R32,1D,3B/E/F/I/J,San Francisco Bay Area (Santa Clara)
+82,R32,1G,3A/E/H/I/J,Seattle
+83,R32,2K,2L,Toronto
+84,R32,1H,2J,Los Angeles (Inglewood)
+85,R32,1B,3E/F/G/I/J,Vancouver
+86,R32,1J,2H,Miami (Miami Gardens)
+87,R32,1K,3D/E/I/J/L,Kansas City
+88,R32,2D,2G,Dallas (Arlington)
+89,R16,W74,W77,Philadelphia
+90,R16,W73,W75,Houston
+91,R16,W76,W78,New York/New Jersey (East Rutherford)
+92,R16,W79,W80,Mexico City
+93,R16,W83,W84,Dallas (Arlington)
+94,R16,W81,W82,Seattle
+95,R16,W86,W88,Atlanta
+96,R16,W85,W87,Vancouver
+97,QF,W89,W90,Boston (Foxborough)
+98,QF,W93,W94,Los Angeles (Inglewood)
+99,QF,W91,W92,Miami (Miami Gardens)
+100,QF,W95,W96,Kansas City
+101,SF,W97,W98,Dallas (Arlington)
+102,SF,W99,W100,Atlanta
+103,3RD,L101,L102,Miami (Miami Gardens)
+104,FINAL,W101,W102,New York/New Jersey (East Rutherford)
