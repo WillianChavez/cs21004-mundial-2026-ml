@@ -70,11 +70,23 @@ desafio-practico-01/
 - Plantillas y valores de mercado (Transfermarkt — opcional).
 - Variables socioeconómicas para debutantes (PIB per cápita, población, etc.).
 
+## Requisitos del entorno
+
+- **Python 3.13.2** (versión con la que se desarrolló y probó el proyecto).
+- Dependencias fijadas en `requirements.txt` (numpy, pandas, scipy, scikit-learn 1.7.2, xgboost, etc.).
+
 ## Instalación
 
 ```bash
+# Verificar versión de Python (debe ser 3.13.x)
+python --version
+
+# Crear y activar entorno virtual
 python -m venv .venv
-source .venv/bin/activate    # Windows: .venv\Scripts\activate
+.venv\Scripts\activate       # Windows
+# source .venv/bin/activate  # Linux / macOS
+
+# Instalar dependencias
 pip install -r requirements.txt
 ```
 

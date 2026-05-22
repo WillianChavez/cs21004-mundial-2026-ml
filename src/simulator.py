@@ -9,6 +9,16 @@ import numpy as np
 import pandas as pd
 import joblib
 from pathlib import Path
+import warnings
+
+# Los modelos .joblib se serializaron con una version concreta de scikit-learn.
+# Si se cargan con otra version, sklearn emite InconsistentVersionWarning (inofensivo
+# aqui: los resultados son identicos). Lo silenciamos para no ensuciar la salida.
+try:
+    from sklearn.exceptions import InconsistentVersionWarning
+    warnings.filterwarnings("ignore", category=InconsistentVersionWarning)
+except Exception:
+    pass
 
 PROJ_ROOT = Path(__file__).resolve().parents[1]
 DATA_PROC = PROJ_ROOT / "data" / "processed"
@@ -375,6 +385,19 @@ def wilson_ci(p, n, z=1.96):
     return max(0.0, center - half), min(1.0, center + half)
 
 
+def prepare_output_path(out: str) -> Path:
+    """Crea la carpeta de salida si no existe y borra el archivo previo.
+
+    Asi, si el archivo ya existe, se limpia y se regenera sin errores.
+    """
+    out_path = Path(out)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    if out_path.exists():
+        out_path.unlink()
+        print(f"Archivo previo encontrado, se elimina para regenerar: {out_path}")
+    return out_path
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--n_sim", type=int, default=10000)
@@ -382,6 +405,8 @@ def main():
     parser.add_argument("--out", default="reports/top5_champions.csv")
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
+
+    out_path = prepare_output_path(args.out)
 
     snapshot_df = pd.read_csv(DATA_PROC / 'teams_2026_snapshot.csv')
     snapshot = {row['team']: {'elo': row['elo'], 'win_rate': row['win_rate'],
@@ -391,12 +416,11 @@ def main():
 
     print(f"Corriendo {args.n_sim} simulaciones con modelo={args.model}...")
     df = simulate_tournament(snapshot, model, n_sim=args.n_sim, seed=args.seed)
-    # Agregar CI Wilson
-    df['ci_low'], df['ci_high'] = zip(*df.apply(lambda r: wilson_ci(r['p_champion'], r['n_sim']), axis=1))
-    df.to_csv(args.out, index=False)
-    print(f"\n✓ {args.out}")
-    print(f"\n=== TOP-10 CAMPEONES ===")
-    print(df.head(10).to_string(index=False, float_format=lambda v: f'{v:.4f}'))
+    df["ci_low"], df["ci_high"] = zip(*df.apply(lambda r: wilson_ci(r["p_champion"], r["n_sim"]), axis=1))
+    df.to_csv(out_path, index=False)
+    print(f"\nOK: {out_path}")
+    print("\n=== TOP-10 CAMPEONES ===")
+    print(df.head(10).to_string(index=False, float_format=lambda v: f"{v:.4f}"))
 
 
 if __name__ == "__main__":

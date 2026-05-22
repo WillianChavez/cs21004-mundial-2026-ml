@@ -200,12 +200,15 @@ def simulate_tournament_fast(snapshot, model, n_sim=10000, seed=42, verbose=True
 
 
 def main():
+    from src.simulator import prepare_output_path
     parser = argparse.ArgumentParser()
     parser.add_argument("--n_sim", type=int, default=10000)
     parser.add_argument("--model", default="xgboost_calibrated")
     parser.add_argument("--out", default="reports/top5_champions.csv")
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
+
+    out_path = prepare_output_path(args.out)
 
     snapshot_df = pd.read_csv(DATA_PROC / 'teams_2026_snapshot.csv')
     snapshot = {row['team']: {'elo': row['elo'], 'win_rate': row['win_rate'],
@@ -214,10 +217,10 @@ def main():
     model = joblib.load(MODELS_DIR / f"{args.model}.joblib")
 
     df = simulate_tournament_fast(snapshot, model, n_sim=args.n_sim, seed=args.seed)
-    df.to_csv(args.out, index=False)
-    print(f"\n✓ {args.out}")
+    df.to_csv(out_path, index=False)
+    print(f"\nOK: {out_path}")
     print("\n=== TOP-10 CAMPEONES ===")
-    print(df.head(10).to_string(index=False, float_format=lambda v: f'{v:.4f}'))
+    print(df.head(10).to_string(index=False, float_format=lambda v: f"{v:.4f}"))
 
 
 if __name__ == "__main__":
