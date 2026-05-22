@@ -3,7 +3,8 @@
 **Autor:** Willian Alexander Chávez Servellón
 **Carnet:** CS21004
 **Correo:** cs21004@ues.edu.sv
-**Institución:** Universidad de El Salvador, Especialización en Inteligencia Artificial
+**Institución:** Universidad de El Salvador
+**Curso:** Curso de especialización Machine Learning 2026
 
 ---
 
