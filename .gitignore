@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Datos pesados (no subir a Git; documentar en README cómo descargarlos)
+data/raw/openfootball-worldcup/.git/
+data/processed/*.parquet
+data/processed/*.csv
+data/external/*
+
+# Mantener placeholders
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+
+# Modelos: SÍ se versionan (pesan poco, permiten correr la simulación sin re-entrenar)
+# Figuras: SÍ se versionan (son evidencia visual del reporte, pesan poco)
+# (si en el futuro generas artefactos muy pesados, ignóralos individualmente)
+
+# Reportes intermedios
+reports/*.aux
+reports/*.log
+reports/*.out
+reports/*.toc
+reports/*.bbl
+reports/*.blg
+reports/_build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Secretos / API keys
+.env
+*.key
+kaggle.json

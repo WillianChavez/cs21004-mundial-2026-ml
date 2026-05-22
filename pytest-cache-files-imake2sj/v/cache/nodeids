@@ -1,0 +1,14 @@
+[
+  "tests/test_data_loader.py::test_bracket_2026_has_correct_phases",
+  "tests/test_data_loader.py::test_fifa_ranking_loads",
+  "tests/test_data_loader.py::test_groups_2026_has_48_teams",
+  "tests/test_data_loader.py::test_results_has_expected_columns",
+  "tests/test_data_loader.py::test_results_has_reasonable_size",
+  "tests/test_features.py::test_decay_weight_halflife",
+  "tests/test_features.py::test_decay_weight_today_is_one",
+  "tests/test_features.py::test_expected_score_home_advantage",
+  "tests/test_features.py::test_expected_score_symmetry",
+  "tests/test_simulator.py::test_simulate_match_distribution_converges",
+  "tests/test_simulator.py::test_simulate_match_no_draw_never_returns_draw",
+  "tests/test_simulator.py::test_simulate_match_returns_valid_class"
+]
